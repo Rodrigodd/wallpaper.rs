@@ -42,4 +42,12 @@ pub enum Error {
 
     #[error("Invalid path")]
     InvalidPath,
+
+    #[cfg(feature = "from_url")]
+    #[error("No cache dir")]
+    NoCacheDir,
+
+    #[cfg(feature = "from_url")]
+    #[error("Request error: {0}")]
+    RequestError(#[from] reqwest::Error),
 }
